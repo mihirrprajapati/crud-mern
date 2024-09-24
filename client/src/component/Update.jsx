@@ -12,7 +12,7 @@ const Update = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/getUser/" + id)
+      .get("http://localhost:3001/api/getUser/" + id)
       .then((user) => {
         console.log(user);
         setFname(user.data.fname);
@@ -35,7 +35,7 @@ const Update = () => {
   const formSubmit = (e) => {
     e.preventDefault();
     axios
-      .put("http://localhost:3001/updateUser/" + id, {
+      .put("http://localhost:3001/api/updateUser/" + id, {
         fname,
         lname,
         email,

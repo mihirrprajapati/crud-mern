@@ -1,0 +1,7 @@
+DELETE http://localhost:3001/api/deleteUser/66f2d02efd5fc0af2082518f/
+Content-Type: application/json
+
+###
+
+GET http://localhost:3001/api/getAll
+# Content-Type: application/json

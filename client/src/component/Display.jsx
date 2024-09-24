@@ -17,21 +17,26 @@ const Display = () => {
     },
   ]);
 
-  useEffect(() => {
+  const getAllUser = () => {
     axios
-      .get("http://localhost:3001/")
+      .get("http://localhost:3001/api/getAll")
       .then((users) => {
         // console.log(users);
         setData(users.data);
       })
       .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getAllUser();
   }, []);
 
   const deleteUser = (id) => {
     axios
-      .delete("http://localhost:3001/deleteUser/" + id)
+      .delete(`http://localhost:3001/api/deleteUser/${id}`)
       .then((users) => {
         console.log(users);
+        getAllUser();
       })
       .catch((err) => console.log(err));
   };

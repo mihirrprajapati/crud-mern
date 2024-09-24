@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Plus } from "lucide-react";
 
 const Navbar = ({ text, navText, navUrl, navIcon }) => {
   return (

@@ -13,21 +13,33 @@ const Add = () => {
   const [password, setPassword] = useState();
   const [cpassword, setCpassword] = useState();
 
+  const matchPass = () => {
+    if (password == cpassword) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const formSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:3001/createUser", {
-        fname,
-        lname,
-        email,
-        gender,
-        password,
-      })
-      .then((user) => {
-        // console.log(user);
-        navigate("/");
-      })
-      .catch((err) => console.log(err));
+    if (matchPass()) {
+      axios
+        .post("http://localhost:3001/api/create", {
+          fname,
+          lname,
+          email,
+          gender,
+          password,
+        })
+        .then((user) => {
+          console.log(user);
+          navigate("/");
+        })
+        .catch((err) => console.log(err));
+    } else {
+      console.log("Pass mismatch");
+    }
   };
 
   return (
@@ -45,6 +57,7 @@ const Add = () => {
               id="fname"
               aria-describedby="emailHelp"
               onChange={(e) => setFname(e.target.value)}
+              required
             />
           </div>
           <div className="mb-3">
@@ -57,6 +70,7 @@ const Add = () => {
               id="lname"
               aria-describedby="emailHelp"
               onChange={(e) => setLname(e.target.value)}
+              required
             />
           </div>
           <div className="mb-3">
@@ -69,6 +83,7 @@ const Add = () => {
               id="email"
               aria-describedby="emailHelp"
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
           <div className="fs-5">Gender</div>
